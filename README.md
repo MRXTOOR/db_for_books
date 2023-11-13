@@ -15,6 +15,8 @@
 - Format (nvarchar(20))
 - Language (nvarchar(50))
 - Description (nvarchar(max))
+- URL (nvarchar(max))
+- URL_IMAGES (nvarchar(max))
 
 ### BookCopies
 - CopyID (int, primary key)
