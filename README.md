@@ -46,3 +46,17 @@
 | CopyID           | int (FK)       | Внешний ключ, ссылающийся на BookCopies(CopyID) |
 | OrderDate        | date           | Дата размещения заказа        |
 | OrderStatus      | nvarchar(20)   | Статус заказа (например, обработка, отправлен) |
+
+```sql
+INSERT INTO Books (BookID, Title, Author, Genre, PublicationYear, ISBN, PageCount, Format, Language, Description, URL, URL_IMAGES)
+VALUES (1, 'To Kill a Mockingbird', 'Harper Lee', 'Fiction', 1960, '9780061120084', 281, 'Paperback', 'English', 'The unforgettable novel of a childhood in a sleepy Southern town and the crisis of conscience that rocked it.', 'd:\d\d\1\d', 'images\1');
+
+INSERT INTO BookCopies (CopyID, BookID, Availability, Condition)
+VALUES (1, 1, 'Available', 'Good');
+
+INSERT INTO Users (UserID, FirstName, LastName, Email, Password, Role)
+VALUES (1, 'John', 'Doe', 'johndoe@example.com', 'password123', 'Member');
+
+INSERT INTO Orders (OrderID, UserID, CopyID, OrderDate, OrderStatus)
+VALUES (1, 1, 1, '2022-01-15', 'Pending');
+```
