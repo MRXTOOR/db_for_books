@@ -2,39 +2,47 @@
 База данных для хранения информации о книгах в электронной библиотеке.
 - Аникин Г.А [Аникин Г.А] https://github.com/MRXTOOR/db_for_books
 
-## Tables
+## Таблицы базы данных
 
 ### Books
-- BookID (int, primary key)
-- Title (nvarchar(100))
-- Author (nvarchar(100))
-- Genre (nvarchar(50))
-- PublicationYear (int)
-- ISBN (nvarchar(20))
-- PageCount (int)
-- Format (nvarchar(20))
-- Language (nvarchar(50))
-- Description (nvarchar(max))
-- URL (nvarchar(max))
-- URL_IMAGES (nvarchar(max))
+| Поле             | Тип            | Описание                       |
+|------------------|----------------|-------------------------------|
+| BookID           | int (PK)       | Уникальный идентификатор       |
+| Title            | nvarchar(100)  | Название книги                |
+| Author           | nvarchar(100)  | Автор книги                   |
+| Genre            | nvarchar(50)   | Жанр книги                    |
+| PublicationYear  | int            | Год публикации                |
+| ISBN             | nvarchar(20)   | Международный стандартный номер книги |
+| PageCount        | int            | Количество страниц в книге    |
+| Format           | nvarchar(20)   | Формат книги (например, мягкая обложка, твердый переплет) |
+| Language         | nvarchar(50)   | Язык книги                    |
+| Description      | nvarchar(max)  | Описание книги                |
+| URL              | nvarchar(max)  | URL, связанный с книгой       |
+| URL_IMAGES       | nvarchar(max)  | URL для изображений книги     |
 
 ### BookCopies
-- CopyID (int, primary key)
-- BookID (int, foreign key references Books(BookID))
-- Availability (nvarchar(20))
-- Condition (nvarchar(20))
+| Поле             | Тип            | Описание                       |
+|------------------|----------------|-------------------------------|
+| CopyID           | int (PK)       | Уникальный идентификатор       |
+| BookID           | int (FK)       | Внешний ключ, ссылающийся на Books(BookID) |
+| Availability     | nvarchar(20)   | Статус доступности экземпляра книги (например, доступен, выдан) |
+| Condition        | nvarchar(20)   | Состояние экземпляра книги (например, хорошее, удовлетворительное) |
 
 ### Users
-- UserID (int, primary key)
-- FirstName (nvarchar(50))
-- LastName (nvarchar(50))
-- Email (nvarchar(100))
-- Password (nvarchar(100))
-- Role (nvarchar(20))
+| Поле             | Тип            | Описание                       |
+|------------------|----------------|-------------------------------|
+| UserID           | int (PK)       | Уникальный идентификатор       |
+| FirstName        | nvarchar(50)   | Имя пользователя              |
+| LastName         | nvarchar(50)   | Фамилия пользователя           |
+| Email            | nvarchar(100)  | Адрес электронной почты пользователя |
+| Password         | nvarchar(100)  | Пароль пользователя (хешированный и безопасный) |
+| Role             | nvarchar(20)   | Роль пользователя (например, администратор, обычный) |
 
 ### Orders
-- OrderID (int, primary key)
-- UserID (int, foreign key references Users(UserID))
-- CopyID (int, foreign key references BookCopies(CopyID))
-- OrderDate (date)
-- OrderStatus (nvarchar(20)
+| Поле             | Тип            | Описание                       |
+|------------------|----------------|-------------------------------|
+| OrderID          | int (PK)       | Уникальный идентификатор       |
+| UserID           | int (FK)       | Внешний ключ, ссылающийся на Users(UserID) |
+| CopyID           | int (FK)       | Внешний ключ, ссылающийся на BookCopies(CopyID) |
+| OrderDate        | date           | Дата размещения заказа        |
+| OrderStatus      | nvarchar(20)   | Статус заказа (например, обработка, отправлен) |
